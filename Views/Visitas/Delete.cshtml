@@ -1,0 +1,71 @@
+﻿@model ExamenFinal.Models.Visita
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>¿Esta seguro de eliminar la siguiente visita?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivovisita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivovisita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fechavisita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fechavisita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horaentrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horaentrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horasalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horasalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaRecibidora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaRecibidora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contactos.Nombrecompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contactos.Nombrecompleto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <button class="waves-effect waves-light btn yellow">@Html.ActionLink("Ver lista", "Index")</button>
+    </div>
+    }
+</div>

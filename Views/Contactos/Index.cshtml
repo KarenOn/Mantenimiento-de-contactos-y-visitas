@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ExamenFinal.Models.Contactos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contactos registrados</h2>
+
+<a href="@Url.Action("Create", "Contactos")" class="btn-floating btn-large waves-effect waves-light">
+    <i class="material-icons">add</i>
+</a>
+
+<table class="responsive-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombrecompleto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fechacreacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombrecompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fechacreacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdNombre }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdNombre }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IdNombre })
+        </td>
+    </tr>
+}
+</table>

@@ -1,0 +1,47 @@
+﻿@model ExamenFinal.Models.Contactos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>¿Esta seguro de eliminar el siguiente contacto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombrecompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombrecompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fechacreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fechacreacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <button class="waves-effect waves-light btn yellow">@Html.ActionLink("Ver lista", "Index")</button>
+    </div>
+    }
+</div>

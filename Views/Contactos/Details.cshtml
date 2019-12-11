@@ -1,0 +1,42 @@
+﻿@model ExamenFinal.Models.Contactos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles del contacto</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombrecompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombrecompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fechacreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fechacreacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="waves-effect waves-light btn white">@Html.ActionLink("Editar", "Edit", new { id = Model.IdNombre })</button> |
+    <button class="waves-effect waves-light btn yellow">@Html.ActionLink("Ver lista", "Index")</button>
+</p>

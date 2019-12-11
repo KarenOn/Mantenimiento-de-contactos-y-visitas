@@ -1,0 +1,65 @@
+﻿@model ExamenFinal.Models.Visita
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la visita</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivovisita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivovisita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fechavisita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fechavisita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horaentrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horaentrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horasalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horasalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaRecibidora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaRecibidora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contactos.Nombrecompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contactos.Nombrecompleto)
+        </dd>
+    </dl>
+</div>
+<p>
+    <button class="waves-effect waves-light btn white">@Html.ActionLink("Editar", "Edit", new { id = Model.ID })</button> |
+    <button class="waves-effect waves-light btn yellow">@Html.ActionLink("Ver lista", "Index")</button>
+</p>

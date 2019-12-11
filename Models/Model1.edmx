@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="IdNombre" />
+          </Key>
+          <Property Name="IdNombre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombrecompleto" Type="varchar" MaxLength="60" />
+          <Property Name="Cedula" Type="char" MaxLength="13" />
+          <Property Name="Fechacreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Motivovisita" Type="varchar(max)" />
+          <Property Name="Fechavisita" Type="datetime" />
+          <Property Name="Horaentrada" Type="time" Precision="7" />
+          <Property Name="Horasalida" Type="time" Precision="7" />
+          <Property Name="IdNombre" Type="int" />
+          <Property Name="PersonaRecibidora" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Visita__IdNombre__4E88ABD4">
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="0..1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contactos">
+              <PropertyRef Name="IdNombre" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="IdNombre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenModelStoreContainer">
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Visita__IdNombre__4E88ABD4" Association="Self.FK__Visita__IdNombre__4E88ABD4">
+            <End Role="Contactos" EntitySet="Contactos" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="IdNombre" />
+          </Key>
+          <Property Name="IdNombre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecompleto" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+          <Property Name="Fechacreacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Visita" Relationship="Self.FK__Visita__IdNombre__4E88ABD4" FromRole="Contactos" ToRole="Visita" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Visita">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Motivovisita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fechavisita" Type="DateTime" Precision="3" />
+          <Property Name="Horaentrada" Type="Time" Precision="7" />
+          <Property Name="Horasalida" Type="Time" Precision="7" />
+          <Property Name="IdNombre" Type="Int32" />
+          <Property Name="PersonaRecibidora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contactos" Relationship="Self.FK__Visita__IdNombre__4E88ABD4" FromRole="Visita" ToRole="Contactos" />
+        </EntityType>
+        <Association Name="FK__Visita__IdNombre__4E88ABD4">
+          <End Role="Contactos" Type="Self.Contactos" Multiplicity="0..1" />
+          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contactos">
+              <PropertyRef Name="IdNombre" />
+            </Principal>
+            <Dependent Role="Visita">
+              <PropertyRef Name="IdNombre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Visita" EntityType="Self.Visita" />
+          <AssociationSet Name="FK__Visita__IdNombre__4E88ABD4" Association="Self.FK__Visita__IdNombre__4E88ABD4">
+            <End Role="Contactos" EntitySet="Contactos" />
+            <End Role="Visita" EntitySet="Visita" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExamenModelStoreContainer" CdmEntityContainer="ExamenEntities">
+          <EntitySetMapping Name="Contactos">
+            <EntityTypeMapping TypeName="ExamenModel.Contactos">
+              <MappingFragment StoreEntitySet="Contactos">
+                <ScalarProperty Name="IdNombre" ColumnName="IdNombre" />
+                <ScalarProperty Name="Nombrecompleto" ColumnName="Nombrecompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Fechacreacion" ColumnName="Fechacreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ExamenModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visita">
+            <EntityTypeMapping TypeName="ExamenModel.Visita">
+              <MappingFragment StoreEntitySet="Visita">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Motivovisita" ColumnName="Motivovisita" />
+                <ScalarProperty Name="Fechavisita" ColumnName="Fechavisita" />
+                <ScalarProperty Name="Horaentrada" ColumnName="Horaentrada" />
+                <ScalarProperty Name="Horasalida" ColumnName="Horasalida" />
+                <ScalarProperty Name="IdNombre" ColumnName="IdNombre" />
+                <ScalarProperty Name="PersonaRecibidora" ColumnName="PersonaRecibidora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
